@@ -1,55 +1,106 @@
 package com.mycompany.app;
 
 import org.testng.annotations.Test;
-import java.io.FileInputStream;
-import java.io.IOException;
 
-import org.apache.poi.xssf.usermodel.XSSFCell;
-import org.apache.poi.xssf.usermodel.XSSFRow;
-import org.apache.poi.xssf.usermodel.XSSFSheet;
-import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import java.sql.Connection;
+
+import org.testng.annotations.BeforeMethod;
+
+
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+
+import org.testng.annotations.AfterMethod;
 
 public class App {
 
-//Declare variables to access ExcelFile
-public static XSSFWorkbook ExcelWorkbook;
-public static XSSFSheet ExcelWSheet;
-public XSSFCell ExcelCell;
-public static XSSFRow ExcelRow;
 
-  //Location of Excel File
-public static String filename_path="Employee_Data.xlsx";
-
-   //Testcase 1 to read data having first priority
-  @Test(priority=0)
-  public void Read_Data() throws IOException {
-	  //Create an object of FileInputStream class to read excel file
-	  FileInputStream ExcelFile = new FileInputStream(filename_path);
-	  //create object of XSSFWorkbook class
-	  ExcelWorkbook = new XSSFWorkbook(ExcelFile);
-	  //Selecting Sheet1 from Workbook
-	  ExcelWSheet = ExcelWorkbook.getSheet("Sheet1"); 
+	private Connection conn = null;
+	private   Statement st;
+	
+	 @BeforeMethod
+	  public void beforeMethod() 
+	  {
+	  try
+	 {
+	// create our mysql database connection
+    String myUrl = "jdbc:mysql://localhost/test";
+    //provide userid and password for the database
+    conn = DriverManager.getConnection(myUrl, "root", "Alwayshappy@21");
+	 }
+	 catch (Exception e) {
+		// TODO: handle exception
+	}
+	 }
+	 
+  @Test(priority=2)
+  public void insert_Data() {
+	  try
+	  {
+		//create statement object 
+	   st = conn.createStatement();
+	   //SQL insert query for Employee_Details Table
+	   String insert_query= "insert into test.Employee_Details(Emp_ID, Emp_name , Emp_City,Project_ID)"+ " values (1010,'karan','Mumbai', 'PROJ02');";
+       //execute insert query and update in database
+	   st.executeUpdate(insert_query);
+       System.out.println("Row inserted in Employee_Details Table ");
+       String query = "SELECT * FROM test.Employee_Details;";
+      //contains result of database query
+      ResultSet rs = st.executeQuery(query);
+      
+      // iterate through the java ResultSet
+      while (rs.next())
+      {
+    	int Emp_ID=rs.getInt("Emp_ID");
+    	String Emp_name=rs.getString("Emp_name");
+    	String Emp_City=rs.getString("Emp_City");
+    	String Project_ID=rs.getString("Project_ID");
+    	//Display the data stored in ResultSet on console
+        System.out.format("%s, %s, %s, %s\n", Emp_ID, Emp_name, Emp_City, Project_ID);
+      } 
 	  
   }
-
-  //Testcase 1 to print data having first priority
-  @Test(priority=1)
-  public void Print_Data() {
-	  //Find number of rows in excel sheet
-	  int rowCount= ExcelWSheet.getLastRowNum() -ExcelWSheet.getFirstRowNum();
-		  //Create a loop to read rows
-		 for (int i = 0; i < rowCount+1; i++) {
-			 //Read a row at i position
-			 ExcelRow = ExcelWSheet.getRow(i);
-			 
-		        //Create a loop to print cell values in a row
-		        for (int j = 0; j < ExcelRow.getLastCellNum(); j++) {
-		            //Print Excel data in console
-		            System.out.print(ExcelRow.getCell(j)+" | ");
-	        }
-	        System.out.println();
-		 }  
+	  catch (Exception e) {
+		// TODO: handle exception
+	}
   }
   
+	  @Test(priority=1)
+	  public void print() {    	
+		  try
+		  {
+		 //create statement object 
+		  st = conn.createStatement();
+		  //SQL insert query for Project_Details Table
+		  String insert_query= "insert into test.Project_Details(Project_ID, Project_Name , Domain)"+ " values ('Proj05','BT','Support');";
+	      st.executeUpdate(insert_query);
+	      System.out.println("Row inserted in Project_Details Table ");
+	      //SQL SELECT query. 
+	      String pro_query = "SELECT * FROM test.Project_Details;";
+	      //contains result of database query
+	      ResultSet rs = st.executeQuery(pro_query);
+	      
+	      // iterate through the java resultset
+	      while (rs.next())
+	      {
+	    	String Project_ID=rs.getString("Project_ID");
+	    	String Project_Name=rs.getString("Project_Name");
+	    	String Domain=rs.getString("Domain");
+	    	//Display the data stored in ResultSet on console 
+	    	System.out.format("%s, %s, %s\n", Project_ID, Project_Name, Domain);
+	      } 
+		  
+	  }
+		  catch (Exception e) {
+				// TODO: handle exception
+			}
+	  }
+
+  @AfterMethod
+  public void afterMethod() throws SQLException {
+	  st.close();
+  }
+
 }
-  

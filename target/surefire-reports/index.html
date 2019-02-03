@@ -49,7 +49,7 @@
               <ul>
                 <li>
                   <a href="#" class="navigator-link " panel-name="test-xml-Suite1">
-                    <span>C:\Users\Manoj\New folder\my-app\testng.xml</span>
+                    <span>C:\Users\Manoj\my-app\testng.xml</span>
                   </a> <!-- navigator-link  -->
                 </li>
                 <li>
@@ -102,12 +102,12 @@
                     <div class="method-list-content passed suite-Suite1">
                       <span>
                         <img width="3%" src="passed.png"/>
-                        <a href="#" class="method navigator-link" panel-name="suite-Suite1" title="com.mycompany.app.App" hash-for-method="Print_Data">Print_Data</a> <!-- method navigator-link -->
+                        <a href="#" class="method navigator-link" panel-name="suite-Suite1" title="com.mycompany.app.App" hash-for-method="insert_Data">insert_Data</a> <!-- method navigator-link -->
                       </span>
                       <br/>
                       <span>
                         <img width="3%" src="passed.png"/>
-                        <a href="#" class="method navigator-link" panel-name="suite-Suite1" title="com.mycompany.app.App" hash-for-method="Read_Data">Read_Data</a> <!-- method navigator-link -->
+                        <a href="#" class="method navigator-link" panel-name="suite-Suite1" title="com.mycompany.app.App" hash-for-method="print">print</a> <!-- method navigator-link -->
                       </span>
                       <br/>
                     </div> <!-- method-list-content passed suite-Suite1 -->
@@ -130,16 +130,16 @@
             <div class="main-panel-content rounded-window-bottom">
               <div class="method">
                 <div class="method-content">
-                  <a name="Print_Data">
-                  </a> <!-- Print_Data -->
-                  <span class="method-name">Print_Data</span>
+                  <a name="insert_Data">
+                  </a> <!-- insert_Data -->
+                  <span class="method-name">insert_Data</span>
                 </div> <!-- method-content -->
               </div> <!-- method -->
               <div class="method">
                 <div class="method-content">
-                  <a name="Read_Data">
-                  </a> <!-- Read_Data -->
-                  <span class="method-name">Read_Data</span>
+                  <a name="print">
+                  </a> <!-- print -->
+                  <span class="method-name">print</span>
                 </div> <!-- method-content -->
               </div> <!-- method -->
             </div> <!-- main-panel-content rounded-window-bottom -->
@@ -147,7 +147,7 @@
         </div> <!-- panel Suite1 -->
         <div panel-name="test-xml-Suite1" class="panel">
           <div class="main-panel-header rounded-window-top">
-            <span class="header-content">C:\Users\Manoj\New folder\my-app\testng.xml</span>
+            <span class="header-content">C:\Users\Manoj\my-app\testng.xml</span>
           </div> <!-- main-panel-header rounded-window-top -->
           <div class="main-panel-content rounded-window-bottom">
             <pre>
@@ -202,18 +202,18 @@ data.addColumn('string', 'Class');
 data.addColumn('number', 'Time (ms)');
 data.addRows(2);
 data.setCell(0, 0, 0)
-data.setCell(0, 1, 'Read_Data')
+data.setCell(0, 1, 'print')
 data.setCell(0, 2, 'com.mycompany.app.App')
-data.setCell(0, 3, 847);
+data.setCell(0, 3, 61);
 data.setCell(1, 0, 1)
-data.setCell(1, 1, 'Print_Data')
+data.setCell(1, 1, 'insert_Data')
 data.setCell(1, 2, 'com.mycompany.app.App')
-data.setCell(1, 3, 16);
+data.setCell(1, 3, 58);
 window.suiteTableData['Suite1']= { tableData: data, tableDiv: 'times-div-Suite1'}
 return data;
 }
               </script>
-              <span class="suite-total-time">Total running time: 863 ms</span>
+              <span class="suite-total-time">Total running time: 119 ms</span>
               <div id="times-div-Suite1">
               </div> <!-- times-div-Suite1 -->
             </div> <!-- times-div -->
@@ -240,14 +240,30 @@ return data;
           <div class="main-panel-content rounded-window-bottom">
             <div class="chronological-class">
               <div class="chronological-class-name">com.mycompany.app.App</div> <!-- chronological-class-name -->
-              <div class="test-method">
-                <span class="method-name">Read_Data</span>
+              <div class="configuration-method before">
+                <span class="method-name">beforeMethod</span>
                 <span class="method-start">0 ms</span>
-              </div> <!-- test-method -->
+              </div> <!-- configuration-method before -->
               <div class="test-method">
-                <span class="method-name">Print_Data</span>
-                <span class="method-start">850 ms</span>
+                <span class="method-name">print</span>
+                <span class="method-start">453 ms</span>
               </div> <!-- test-method -->
+              <div class="configuration-method after">
+                <span class="method-name">afterMethod</span>
+                <span class="method-start">515 ms</span>
+              </div> <!-- configuration-method after -->
+              <div class="configuration-method before">
+                <span class="method-name">beforeMethod</span>
+                <span class="method-start">521 ms</span>
+              </div> <!-- configuration-method before -->
+              <div class="test-method">
+                <span class="method-name">insert_Data</span>
+                <span class="method-start">699 ms</span>
+              </div> <!-- test-method -->
+              <div class="configuration-method after">
+                <span class="method-name">afterMethod</span>
+                <span class="method-start">758 ms</span>
+              </div> <!-- configuration-method after -->
           </div> <!-- main-panel-content rounded-window-bottom -->
         </div> <!-- panel -->
       </div> <!-- main-panel-root -->
