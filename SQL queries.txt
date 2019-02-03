@@ -1,0 +1,34 @@
+//create Table Employee_Details and Project_Details
+
+create table test.Employee_Details (Emp_ID int(10), Emp_name varchar(25), Emp_City varchar(25), Project_ID varchar(10));
+create table test.Project_Details(Project_ID varchar(10), Project_Name varchar(25), Domain Varchar(20));
+
+//Insert Values into Tables
+Insert into test.Employee_Details (Emp_ID, Emp_name , Emp_City,Project_ID) values (1003, "Rachana","Mumbai", "PROJ02");
+Insert into test.Project_Details(Project_ID ,Project_Name , Domain) values ("proj04","Sprint","Development");
+
+//Update row in Table
+UPDATE test.Employee_Details
+SET test.Employee_Details.Project_ID="PROJ04"
+WHERE test.Employee_Details.Project_ID="proj04";
+
+//Delete row in Table
+DELETE from test.Employee_Details where Emp_name="rahul";
+
+//Inner Join Query
+SELECT test.Employee_Details.Emp_name
+FROM test.Employee_Details 
+INNER JOIN test.Project_Details ON test.Employee_Details.Project_ID = test.Project_Details.Project_ID;
+
+SELECT *
+FROM test.Project_Details 
+INNER JOIN test.Employee_Details ON test.Employee_Details.Project_ID = test.Project_Details.Project_ID;
+
+//Outer Join Query
+SELECT *
+FROM test.Employee_Details
+LEFT JOIN test.Project_Details ON test.Employee_Details.Project_ID = test.Project_Details.Project_ID;
+
+SELECT *
+FROM test.Employee_Details
+RIGHT JOIN test.Project_Details ON test.Employee_Details.Project_ID = test.Project_Details.Project_ID;
